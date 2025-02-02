@@ -1,7 +1,6 @@
 package org.example.factory.simplefactory.domain.pizza.factory;
 
 import org.example.factory.simplefactory.domain.pizza.*;
-import org.example.simplefactory.domain.pizza.*;
 
 public class SimplePizzaFactory {
 

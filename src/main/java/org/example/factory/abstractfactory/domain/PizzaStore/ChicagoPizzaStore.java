@@ -1,23 +1,35 @@
 package org.example.factory.abstractfactory.domain.PizzaStore;
 
-import org.example.factory.abstractfactory.domain.pizza.Pizza;
-import org.example.factory.abstractfactory.domain.pizza.chicago.ChicagoCheesePizza;
-import org.example.factory.abstractfactory.domain.pizza.chicago.ChicagoPepperoniPizza;
-import org.example.factory.abstractfactory.domain.pizza.chicago.ChicagoPizzaTypeEnum;
-import org.example.factory.abstractfactory.domain.pizza.chicago.ChicagoVeggiePizza;
+import org.example.factory.abstractfactory.domain.pizza.*;
+import org.example.factory.abstractfactory.domain.pizza.chicago.ChicagoPizzaIngredientFactory;
 
 public class ChicagoPizzaStore extends PizzaStore {
 
   @Override
   Pizza createPizza(String type) {
+    ChicagoPizzaIngredientFactory ingredientFactory = new ChicagoPizzaIngredientFactory();
+
     Pizza pizza;
 
-    ChicagoPizzaTypeEnum typeEnum = ChicagoPizzaTypeEnum.fromString(type);
+    PizzaTypeEnum typeEnum = PizzaTypeEnum.fromString(type);
 
     switch (typeEnum) {
-      case CHEESE -> pizza = new ChicagoCheesePizza();
-      case VEGGIE -> pizza = new ChicagoVeggiePizza();
-      case PEPPERONI -> pizza = new ChicagoPepperoniPizza();
+      case CHEESE -> {
+        pizza = new CheesePizza(ingredientFactory);
+        pizza.setName("Chicago Style Cheese Pizza");
+      }
+      case VEGGIE -> {
+        pizza = new VeggiesPizza(ingredientFactory);
+        pizza.setName("Chicago Style Veggie Pizza");
+      }
+      case PEPPERONI -> {
+        pizza = new PepperoniPizza(ingredientFactory);
+        pizza.setName("Chicago Style Pepperoni Pizza");
+      }
+      case CLAM -> {
+        pizza = new ClamPizza(ingredientFactory);
+        pizza.setName("Chicago Style Clam Pizza");
+      }
       default -> throw new RuntimeException("Pizza type is no allowed");
     }
 

@@ -15,7 +15,7 @@ import org.example.factory.abstractfactory.domain.pizza.PizzaIngredientFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NYPizzaIngrediantFactory implements PizzaIngredientFactory {
+public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
   @Override
   public Dough createDough() {
     return new ThimCrustDough();

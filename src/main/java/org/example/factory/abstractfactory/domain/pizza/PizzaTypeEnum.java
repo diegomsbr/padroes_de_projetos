@@ -1,14 +1,15 @@
-package org.example.factory.abstractfactory.domain.pizza.ny;
+package org.example.factory.abstractfactory.domain.pizza;
 
-public enum NYPizzaTypeEnum {
+public enum PizzaTypeEnum {
 
     CHEESE("cheese"),
     VEGGIE("veggie"),
-    PEPPERONI("pepperoni");
+    PEPPERONI("pepperoni"),
+    CLAM("clam");
 
     private final String type;
 
-    NYPizzaTypeEnum(String type){
+    PizzaTypeEnum(String type){
         this.type = type;
     }
 
@@ -16,9 +17,9 @@ public enum NYPizzaTypeEnum {
         return this.type;
     }
 
-    public static NYPizzaTypeEnum fromString(String type) {
+    public static PizzaTypeEnum fromString(String type) {
         if (type != null) {
-            for (NYPizzaTypeEnum nyType : NYPizzaTypeEnum.values()) {
+            for (PizzaTypeEnum nyType : PizzaTypeEnum.values()) {
                 if (nyType.type.equalsIgnoreCase(type)) {
                     return nyType;
                 }
