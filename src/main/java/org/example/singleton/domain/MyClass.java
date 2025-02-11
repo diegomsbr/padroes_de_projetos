@@ -5,6 +5,7 @@ package org.example.singleton.domain;
 // private volatile static MyClass instance = new MyCalss();
 // e no getInstance() retornar instance
 
+
 public class MyClass {
 
     private volatile static MyClass instance;
