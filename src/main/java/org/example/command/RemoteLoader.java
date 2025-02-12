@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.command.domain.automations.*;
+import org.example.command.domain.command.Command;
 import org.example.command.domain.command.impl.*;
 
 public class RemoteLoader {
@@ -14,6 +15,8 @@ public class RemoteLoader {
     CeilingFan ceilingFan = new CeilingFan("Living Room");
     GarageDoor garageDoor = new GarageDoor();
     Stereo stereo = new Stereo("Living Room");
+    TV tv = new TV("Living Room");
+    HotHub hotHub = new HotHub();
 
     LigthOnCommand livingRoomLigthOn = new LigthOnCommand(livingRoomLigth);
     LigthOffCommand livingRoomLigthOff = new LigthOffCommand(livingRoomLigth);
@@ -32,13 +35,26 @@ public class RemoteLoader {
     StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
     StereoOffCommand stereoOff = new StereoOffCommand(stereo);
 
+    TVOnCommand tvOn = new TVOnCommand(tv);
+    TVOffCommand tvOff = new TVOffCommand(tv);
+
+    HotHubOnCommand hotHubOn = new HotHubOnCommand(hotHub);
+    HotHubOffCommand hotHubOff = new HotHubOffCommand(hotHub);
+
+    Command[] partyOn = {livingRoomLigthOn, stereoOnWithCD, tvOn, hotHubOn};
+    Command[] partyOff = {livingRoomLigthOff, stereoOff, tvOff, hotHubOff};
+
+    MacroCommand partyOnMacro = new MacroCommand(partyOn);
+    MacroCommand partyOffMacro = new MacroCommand(partyOff);
+
     remoteControl.setCommand(0, livingRoomLigthOn, livingRoomLigthOff);
     remoteControl.setCommand(1, kitchenLigthOn, kitchenLigthOff);
     remoteControl.setCommand(2, ceilingFanLow, ceilingFanOff);
     remoteControl.setCommand(3, ceilingFanMedium, ceilingFanOff);
     remoteControl.setCommand(4, ceilingFanHigh, ceilingFanOff);
     remoteControl.setCommand(5, garageDoorUp, garageDoorDown);
-    remoteControl.setCommand(6, stereoOnWithCD, stereoOff);
+    // remoteControl.setCommand(6, stereoOnWithCD, stereoOff);
+    remoteControl.setCommand(6, partyOnMacro, partyOffMacro);
 
     System.out.println(remoteControl);
 
@@ -79,7 +95,13 @@ public class RemoteLoader {
     remoteControl.undoButtonWasPushed();
     System.out.println("------");
 
+//    remoteControl.onButtonWasPushed(6);
+//    remoteControl.offButtonWasPushed(6);
+//    System.out.println("------");
+
     remoteControl.onButtonWasPushed(6);
+    System.out.println(remoteControl.getUndoCommand());
+    remoteControl.undoButtonWasPushed();
     remoteControl.offButtonWasPushed(6);
     System.out.println("------");
   }

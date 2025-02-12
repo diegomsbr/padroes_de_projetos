@@ -2,6 +2,14 @@ package org.example.command.domain.automations;
 
 public class HotHub {
 
+  public void on() {
+    System.out.println("HotHub is on");
+  }
+
+  public void off() {
+    System.out.println("HotHub is off");
+  }
+
   public void circulate() {
     System.out.println("HotHub is circulating");
   }
